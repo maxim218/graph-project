@@ -8,6 +8,188 @@ import equalFloat from "./../scripts/equalFloat";
 import lineSegmentsHit from "./../scripts/lineSegmentsHit";
 import equationOfLine from "./../scripts/equationOfLine";
 import clearArray from "./../scripts/clearArray";
+import hitOtrWall from "./../scripts/hitOtrWall";
+import getPointsFromOtrArray from "./../scripts/getPointsFromOtrArray";
+import deleteDublicatePoints from "./../scripts/deleteDublicatePoints";
+
+describe("Удаление дубликатов из массива точек", () => {
+    it("Массив точек пустой", () => {
+        const pointsArr = [];
+        assert.deepStrictEqual(deleteDublicatePoints(pointsArr), []);
+    });
+
+    it("Массив точек не содержит дубликатов", () => {
+        const pointsArr = [
+            {Px: 10, Py: 20},
+            {Px: 30, Py: 40},
+            {Px: 50, Py: 60},
+            {Px: 70, Py: 80},
+        ];
+        assert.deepStrictEqual(deleteDublicatePoints(pointsArr), [
+            {Px: 10, Py: 20},
+            {Px: 30, Py: 40},
+            {Px: 50, Py: 60},
+            {Px: 70, Py: 80},
+        ]);
+    });
+
+    it("Массив точек имеет дубликаты", () => {
+        const pointsArr = [
+            {Px: 10, Py: 20},
+            {Px: 10, Py: 20},
+            {Px: 10, Py: 20},
+            {Px: 123, Py: 456},
+            {Px: 123, Py: 456},
+            {Px: 123, Py: 456},
+            {Px: -9, Py: -7},
+            {Px: -9, Py: -7},
+            {Px: -9, Py: -7},
+            {Px: 10, Py: 20},
+            {Px: 30, Py: 40},
+            {Px: 50, Py: 60},
+        ];
+        assert.deepStrictEqual(deleteDublicatePoints(pointsArr), [
+            {Px: 10, Py: 20},
+            {Px: 123, Py: 456},
+            {Px: -9, Py: -7},
+            {Px: 30, Py: 40},
+            {Px: 50, Py: 60},
+        ]);
+    });
+
+    it("У всех одинаковая позиция X", () => {
+        const pointsArr = [
+            {Px: 1000, Py: -14},
+            {Px: 1000, Py: 75},
+            {Px: 1000, Py: 75},
+            {Px: 1000, Py: 75},
+            {Px: 1000, Py: -14},
+            {Px: 1000, Py: -14},
+            {Px: 1000, Py: -14},
+            {Px: 1000, Py: 75},
+        ];
+        assert.deepStrictEqual(deleteDublicatePoints(pointsArr), [
+            {Px: 1000, Py: -14},
+            {Px: 1000, Py: 75},
+        ]);
+    });
+
+    it("У всех одинаковая позиция Y", () => {
+        const pointsArr = [
+            {Px: -25, Py: 5000},
+            {Px: -8, Py: 5000},
+            {Px: -25, Py: 5000},
+            {Px: -8, Py: 5000},
+            {Px: -25, Py: 5000},
+            {Px: -8, Py: 5000},
+        ];
+        assert.deepStrictEqual(deleteDublicatePoints(pointsArr), [
+            {Px: -25, Py: 5000},
+            {Px: -8, Py: 5000},
+        ]);
+    });
+});
+
+describe("Получение всех точек из массива отрезков", () => {
+    it("Массив отрезков пустой", () => {
+        const otrArr = [];
+        assert.deepStrictEqual(getPointsFromOtrArray(otrArr), []);
+    });
+
+    it("Массив отрезков имеет содержимое", () => {
+        const arrString = `
+            [{"A":{"x":100,"y":50},"B":{"x":200,"y":100}},
+             {"A":{"x":100,"y":50},"B":{"x":50,"y":200}},
+             {"A":{"x":200,"y":100},"B":{"x":50,"y":200}},
+             {"A":{"x":350,"y":50},"B":{"x":450,"y":50}},
+             {"A":{"x":450,"y":50},"B":{"x":450,"y":150}},
+             {"A":{"x":450,"y":150},"B":{"x":350,"y":150}},
+             {"A":{"x":350,"y":50},"B":{"x":350,"y":150}},
+             {"A":{"x":50,"y":250},"B":{"x":350,"y":250}},
+             {"A":{"x":50,"y":300},"B":{"x":350,"y":250}},
+             {"A":{"x":50,"y":300},"B":{"x":50,"y":250}}]
+        `;
+        const otrArr = JSON.parse(arrString);
+
+        assert.deepStrictEqual(getPointsFromOtrArray(otrArr), [
+            {Px:100, Py:50},
+            {Px:200, Py:100},
+            {Px:100, Py:50},
+            {Px:50, Py:200},
+            {Px:200, Py:100},
+            {Px:50, Py:200},
+            {Px:350, Py:50},
+            {Px:450, Py:50},
+            {Px:450, Py:50},
+            {Px:450, Py:150},
+            {Px:450, Py:150},
+            {Px:350, Py:150},
+            {Px:350, Py:50},
+            {Px:350, Py:150},
+            {Px:50, Py:250},
+            {Px:350, Py:250},
+            {Px:50, Py:300},
+            {Px:350, Py:250},
+            {Px:50, Py:300},
+            {Px:50, Py:250},
+        ]);
+    });
+});
+
+describe("Тестирование функции проверки пересечения отрезка с хотя бы одной стеной из массива", () => {
+    it("Массив стен пустой", () => {
+        const mainOtr = {
+            A: {x: 10, y: 20},
+            B: {x: 100, y: 200},
+        }
+
+        const otrArr = [];
+
+        assert.deepStrictEqual(hitOtrWall(mainOtr, otrArr), false);
+    });
+
+    it("Есть пересечение с одной стенкой", () => {
+        const arrString = `
+            [{"A":{"x":100,"y":50},"B":{"x":200,"y":100}},{"A":{"x":100,"y":50},"B":{"x":50,"y":200}},{"A":{"x":200,"y":100},"B":{"x":50,"y":200}},{"A":{"x":350,"y":50},"B":{"x":450,"y":50}},{"A":{"x":450,"y":50},"B":{"x":450,"y":150}},{"A":{"x":450,"y":150},"B":{"x":350,"y":150}},{"A":{"x":350,"y":50},"B":{"x":350,"y":150}},{"A":{"x":50,"y":250},"B":{"x":350,"y":250}},{"A":{"x":50,"y":300},"B":{"x":350,"y":250}},{"A":{"x":50,"y":300},"B":{"x":50,"y":250}}]
+        `;
+        const otrArr = JSON.parse(arrString);
+
+        const mainOtr = {
+            A: {x: 200, y: 50},
+            B: {x: 125, y: 100},
+        }
+
+        assert.deepStrictEqual(hitOtrWall(mainOtr, otrArr), true);
+    });
+
+    it("Есть пересечение с двумя стенками", () => {
+        const arrString = `
+            [{"A":{"x":100,"y":50},"B":{"x":200,"y":100}},{"A":{"x":100,"y":50},"B":{"x":50,"y":200}},{"A":{"x":200,"y":100},"B":{"x":50,"y":200}},{"A":{"x":350,"y":50},"B":{"x":450,"y":50}},{"A":{"x":450,"y":50},"B":{"x":450,"y":150}},{"A":{"x":450,"y":150},"B":{"x":350,"y":150}},{"A":{"x":350,"y":50},"B":{"x":350,"y":150}},{"A":{"x":50,"y":250},"B":{"x":350,"y":250}},{"A":{"x":50,"y":300},"B":{"x":350,"y":250}},{"A":{"x":50,"y":300},"B":{"x":50,"y":250}}]
+        `;
+        const otrArr = JSON.parse(arrString);
+
+        const mainOtr = {
+            A: {x: 300, y: 100},
+            B: {x: 500, y: 100},
+        }
+
+        assert.deepStrictEqual(hitOtrWall(mainOtr, otrArr), true);
+    });
+
+    it("Нет пересечений со стенками", () => {
+        const arrString = `
+            [{"A":{"x":100,"y":50},"B":{"x":200,"y":100}},{"A":{"x":100,"y":50},"B":{"x":50,"y":200}},{"A":{"x":200,"y":100},"B":{"x":50,"y":200}},{"A":{"x":350,"y":50},"B":{"x":450,"y":50}},{"A":{"x":450,"y":50},"B":{"x":450,"y":150}},{"A":{"x":450,"y":150},"B":{"x":350,"y":150}},{"A":{"x":350,"y":50},"B":{"x":350,"y":150}},{"A":{"x":50,"y":250},"B":{"x":350,"y":250}},{"A":{"x":50,"y":300},"B":{"x":350,"y":250}},{"A":{"x":50,"y":300},"B":{"x":50,"y":250}}]
+        `;
+        const otrArr = JSON.parse(arrString);
+
+        const mainOtr = {
+            A: {x: 175, y: 175},
+            B: {x: 275, y: 225},
+        }
+
+        assert.deepStrictEqual(hitOtrWall(mainOtr, otrArr), false);
+    });
+});
 
 describe("Тестирование функции очистки массива", () => {
     it("Передача массива чисел", () => {

@@ -17,6 +17,7 @@ window.onload = function() {
         "can",
         "saveOtrMap",
         "loadOtrMap",
+        "getWaysBetweenVertexes",
     ]);
 
     const canvasManager = new CanvasManager(dictionary["can"]);

@@ -19,4 +19,8 @@ export default function eventsControl(dictionary, canvasManager, otrArr) {
     dictionary["loadOtrMap"].onclick = () => {
         loadOtrMap(otrArr, canvasManager);
     };
+
+    dictionary["getWaysBetweenVertexes"].onclick = () => {
+        
+    };
 }
