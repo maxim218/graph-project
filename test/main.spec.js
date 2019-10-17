@@ -7,6 +7,39 @@ import isMiddle from "./../scripts/isMiddle";
 import equalFloat from "./../scripts/equalFloat";
 import lineSegmentsHit from "./../scripts/lineSegmentsHit";
 import equationOfLine from "./../scripts/equationOfLine";
+import clearArray from "./../scripts/clearArray";
+
+describe("Тестирование функции очистки массива", () => {
+    it("Передача массива чисел", () => {
+        const arr = [10, 20, 30, 40, 50, 60, 1, 2, 3, 4, 5];
+        clearArray(arr);
+        assert.deepStrictEqual(arr, []);
+    });
+
+    it("Передача массива строк", () => {
+        const arr = ["hello", "wonderful", "world"];
+        clearArray(arr);
+        assert.deepStrictEqual(arr, []);
+    });
+
+    it("Передача массива объектов", () => {
+        const arr = [
+            {abc: 100},
+            {abc: 200},
+            {abc: 500},
+            {abc: 80},
+            {abc: 45},
+        ];
+        clearArray(arr);
+        assert.deepStrictEqual(arr, []);
+    });
+
+    it("Передача пустого массива", () => {
+        const arr = [];
+        clearArray(arr);
+        assert.deepStrictEqual(arr, []);
+    });
+});
 
 describe("Тестирование функции создания точки", () => {
     it("На вход идут целые числа", () => {
