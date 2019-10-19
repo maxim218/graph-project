@@ -13,7 +13,7 @@
         #mainBox {
             margin: 0 auto;
             width: 800px;
-            height: 1180px;
+            height: 1250px;
             padding: 40px;
             background: white;
             border-radius: 5px;
@@ -74,30 +74,39 @@
 <div id = "mainBox">
     <canvas width = "800px" height = "600px" id = "can"></canvas>
     <div id = "userMenuBox">
-        <button id = "saveOtrMap">Сохранить карту отрезков</button>
-        <button id = "loadOtrMap">Загрузить карту отрезков</button>
-        <br>
-        <br>
-        <div class = "inputBox">
-            <h3>Добавить отрезок</h3>
-            Ax: <input id = "Ax" spellcheck = 'false' autocomplete = 'off' class = 'inputField' type = 'text' placeholder = 'число'>
-            <br>
-            <br>
-            Ay: <input id = "Ay" spellcheck = 'false' autocomplete = 'off' class = 'inputField' type = 'text' placeholder = 'число'>
-            <br>
-            <br>
-            Bx: <input id = "Bx" spellcheck = 'false' autocomplete = 'off' class = 'inputField' type = 'text' placeholder = 'число'>
-            <br>
-            <br>
-            By: <input id = "By" spellcheck = 'false' autocomplete = 'off' class = 'inputField' type = 'text' placeholder = 'число'>
-            <br>
-            <br>
-            <button id = "addOtrBtn">Добавить отрезок</button>
-            <br>
-            <br>
+
+        <div id = "stepSECONDbox" hidden>
+            <h1>Часть 2</h1>
         </div>
-        <br>
-        <button id = "getWaysBetweenVertexes">Получить пути между вершинами</button>
+
+        <div id = "stepFIRSTbox">
+            <button id = "saveOtrMap">Сохранить карту отрезков</button>
+            <button id = "loadOtrMap">Загрузить карту отрезков</button>
+            <br>
+            <br>
+            <div class = "inputBox">
+                <h3>Добавить отрезок</h3>
+                Ax: <input id = "Ax" spellcheck = 'false' autocomplete = 'off' class = 'inputField' type = 'text' placeholder = 'число'>
+                <br>
+                <br>
+                Ay: <input id = "Ay" spellcheck = 'false' autocomplete = 'off' class = 'inputField' type = 'text' placeholder = 'число'>
+                <br>
+                <br>
+                Bx: <input id = "Bx" spellcheck = 'false' autocomplete = 'off' class = 'inputField' type = 'text' placeholder = 'число'>
+                <br>
+                <br>
+                By: <input id = "By" spellcheck = 'false' autocomplete = 'off' class = 'inputField' type = 'text' placeholder = 'число'>
+                <br>
+                <br>
+                <button id = "addOtrBtn">Добавить отрезок</button>
+                <br>
+                <br>
+            </div>
+            <br>
+            <button id = "getWaysBetweenVertexes">Получить пути между вершинами</button>
+        </div>
+
+
     </div>
 </div>
     

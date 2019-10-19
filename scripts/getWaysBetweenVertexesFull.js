@@ -5,7 +5,10 @@ import deleteDublicatePoints from "./deleteDublicatePoints";
 import getWaysBetweenVertexes from "./getWaysBetweenVertexes";
 import renderOtrArray from "./renderOtrArray";
 
-export default function getWaysBetweenVertexesFull(otrArr, canvasManager) {
+export default function getWaysBetweenVertexesFull(otrArr, canvasManager, dictionary) {
+    dictionary["stepFIRSTbox"].hidden = true;
+    dictionary["stepSECONDbox"].hidden = false;
+
     let pointsArr = undefined;
     
     pointsArr = getPointsFromOtrArray(otrArr);

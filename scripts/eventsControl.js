@@ -24,7 +24,7 @@ export default function eventsControl(dictionary, canvasManager, otrArr) {
     };
 
     dictionary["getWaysBetweenVertexes"].onclick = () => {
-        getWaysBetweenVertexesFull(otrArr, canvasManager);
+        getWaysBetweenVertexesFull(otrArr, canvasManager, dictionary);
     };
 
     const mousePosObj = {

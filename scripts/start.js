@@ -18,6 +18,8 @@ window.onload = function() {
         "saveOtrMap",
         "loadOtrMap",
         "getWaysBetweenVertexes",
+        "stepFIRSTbox",
+        "stepSECONDbox",
     ]);
 
     const canvasManager = new CanvasManager(dictionary["can"]);
