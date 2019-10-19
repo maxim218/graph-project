@@ -11,6 +11,57 @@ import clearArray from "./../scripts/clearArray";
 import hitOtrWall from "./../scripts/hitOtrWall";
 import getPointsFromOtrArray from "./../scripts/getPointsFromOtrArray";
 import deleteDublicatePoints from "./../scripts/deleteDublicatePoints";
+import distance from "./../scripts/distance";
+import equalPoints from "./../scripts/equalPoints";
+
+describe("Сравнение двух точек друг с другом", () => {
+    it("Точки равны", () => {
+        const A = {x: 45, y: 123};
+        const B = {x: 45, y: 123};
+        assert.deepStrictEqual(equalPoints(A, B), true);
+    });
+
+    it("Точки не равны", () => {
+        const A = {x: 45, y: 123};
+        const B = {x: 287, y: 15};
+        assert.deepStrictEqual(equalPoints(A, B), false);
+    });
+
+    it("Точки не равны, хотя X одинаковая", () => {
+        const A = {x: 100, y: 75};
+        const B = {x: 100, y: 14};
+        assert.deepStrictEqual(equalPoints(A, B), false);
+    });
+
+    it("Точки не равны, хотя Y одинаковая", () => {
+        const A = {x: 123, y: 500};
+        const B = {x: -67, y: 500}
+        assert.deepStrictEqual(equalPoints(A, B), false);
+    });
+});
+
+describe("Получение расстояния между точками", () => {
+    it("Горизонтальный отрезок", () => {
+        const A = {Px: 2, Py: 1};
+        const B = {Px: 5, Py: 1};
+        const d = distance(A, B);
+        assert.deepStrictEqual(equalFloat(d, 3.0), true);
+    });
+
+    it("Вертикальный отрезок", () => {
+        const A = {Px: 2, Py: 1};
+        const B = {Px: 2, Py: 5};
+        const d = distance(A, B);
+        assert.deepStrictEqual(equalFloat(d, 4.0), true);
+    });
+
+    it("Отрезок под наклоном", () => {
+        const A = {Px: 2, Py: 1};
+        const B = {Px: 5, Py: 4};
+        const d = distance(A, B);
+        assert.deepStrictEqual(equalFloat(d, 4.24264), true);
+    });
+});
 
 describe("Удаление дубликатов из массива точек", () => {
     it("Массив точек пустой", () => {

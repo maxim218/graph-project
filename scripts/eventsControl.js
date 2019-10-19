@@ -4,6 +4,7 @@ import log from "./log";
 import addOtr from "./addOtr";
 import saveOtrMap from "./saveOtrMap";
 import loadOtrMap from "./loadOtrMap";
+import getWaysBetweenVertexesFull from "./getWaysBetweenVertexesFull";
 
 export default function eventsControl(dictionary, canvasManager, otrArr) {
     log("Call eventsControl");
@@ -21,6 +22,6 @@ export default function eventsControl(dictionary, canvasManager, otrArr) {
     };
 
     dictionary["getWaysBetweenVertexes"].onclick = () => {
-        
+        getWaysBetweenVertexesFull(otrArr, canvasManager);
     };
 }
