@@ -25,6 +25,8 @@ window.onload = function() {
         "Fx",
         "Fy",
         "setStartAndFinishBtn",
+        "adrHostField",
+        "getWayQueryBtn",
     ]);
 
     const canvasManager = new CanvasManager(dictionary["can"]);

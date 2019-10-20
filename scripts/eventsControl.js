@@ -8,6 +8,7 @@ import getWaysBetweenVertexesFull from "./getWaysBetweenVertexesFull";
 import canvasMouseDownFunc from "./canvasMouseDownFunc";
 import canvasMouseUpFunc from "./canvasMouseUpFunc";
 import setStartFinishFunc from "./setStartFinishFunc";
+import getWayQuery from "./getWayQuery";
 
 export default function eventsControl(dictionary, canvasManager, otrArr) {
     log("Call eventsControl");
@@ -41,7 +42,17 @@ export default function eventsControl(dictionary, canvasManager, otrArr) {
         canvasMouseUpFunc(event, mousePosObj, dictionary);
     }
 
+    const wwwObject = {
+        waysArr: null,
+        pointA: null,
+        pointB: null,
+    };
+
     dictionary["setStartAndFinishBtn"].onclick = function() {
-        setStartFinishFunc(dictionary, canvasManager, otrArr);
+        setStartFinishFunc(dictionary, canvasManager, otrArr, wwwObject);
+    }
+
+    dictionary["getWayQueryBtn"].onclick = function() {
+        getWayQuery(wwwObject, dictionary, canvasManager, otrArr);
     }
 }

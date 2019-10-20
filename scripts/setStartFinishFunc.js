@@ -6,7 +6,7 @@ import deleteDublicatePoints from "./deleteDublicatePoints";
 import getWaysBetweenVertexes from "./getWaysBetweenVertexes";
 import renderOtrArray from "./renderOtrArray";
 
-export default function setStartFinishFunc(dictionary, canvasManager, otrArr) {
+export default function setStartFinishFunc(dictionary, canvasManager, otrArr, wwwObject) {
     canvasManager.drawBackground();
 
     const Sx = getIntegerFromString(dictionary["Sx"].value);
@@ -43,4 +43,16 @@ export default function setStartFinishFunc(dictionary, canvasManager, otrArr) {
 
     canvasManager.drawRectangle(Sx - part, Sy - part, size, size, "#FF0000");
     canvasManager.drawRectangle(Fx - part, Fy - part, size, size, "#FF0000");
+
+    wwwObject.waysArr = waysArr;
+
+    wwwObject.pointA = {
+        Px: Sx,
+        Py: Sy,
+    };
+
+    wwwObject.pointB = {
+        Px: Fx,
+        Py: Fy,
+    };
 }
