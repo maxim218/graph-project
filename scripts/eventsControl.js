@@ -7,6 +7,7 @@ import loadOtrMap from "./loadOtrMap";
 import getWaysBetweenVertexesFull from "./getWaysBetweenVertexesFull";
 import canvasMouseDownFunc from "./canvasMouseDownFunc";
 import canvasMouseUpFunc from "./canvasMouseUpFunc";
+import setStartFinishFunc from "./setStartFinishFunc";
 
 export default function eventsControl(dictionary, canvasManager, otrArr) {
     log("Call eventsControl");
@@ -38,5 +39,9 @@ export default function eventsControl(dictionary, canvasManager, otrArr) {
 
     dictionary["can"].onmouseup = function(event) {
         canvasMouseUpFunc(event, mousePosObj, dictionary);
+    }
+
+    dictionary["setStartAndFinishBtn"].onclick = function() {
+        setStartFinishFunc(dictionary, canvasManager, otrArr);
     }
 }

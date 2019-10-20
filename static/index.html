@@ -35,8 +35,10 @@
 
         .inputBox {
             padding-left: 25px;
+            padding-right: 40px;
             border: 2px solid gray;
             border-radius: 5px;
+            width: 500px;
         }
 
         button {
@@ -76,7 +78,24 @@
     <div id = "userMenuBox">
 
         <div id = "stepSECONDbox" hidden>
-            <h1>Часть 2</h1>
+            <div class = "inputBox">
+                <h3>Задать старт и финиш</h3>
+                Sx: <input id = "Sx" spellcheck = 'false' autocomplete = 'off' class = 'inputField' type = 'text' placeholder = 'число'>
+                <br>
+                <br>
+                Sy: <input id = "Sy" spellcheck = 'false' autocomplete = 'off' class = 'inputField' type = 'text' placeholder = 'число'>
+                <br>
+                <br>
+                Fx: <input id = "Fx" spellcheck = 'false' autocomplete = 'off' class = 'inputField' type = 'text' placeholder = 'число'>
+                <br>
+                <br>
+                Fy: <input id = "Fy" spellcheck = 'false' autocomplete = 'off' class = 'inputField' type = 'text' placeholder = 'число'>
+                <br>
+                <br>
+                <button id = "setStartAndFinishBtn">Задать старт и финиш</button>
+                <br>
+                <br>
+            </div>
         </div>
 
         <div id = "stepFIRSTbox">

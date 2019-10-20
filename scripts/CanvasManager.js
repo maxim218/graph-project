@@ -27,4 +27,10 @@ export default class CanvasManager {
         holst.closePath();
         holst.stroke();
     }
+
+    drawRectangle(x, y, width, height, color) {
+        const holst = this.holst;
+        holst.fillStyle = color;
+        holst.fillRect(x, y, width, height);
+    }
 }

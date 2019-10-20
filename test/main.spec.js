@@ -13,6 +13,35 @@ import getPointsFromOtrArray from "./../scripts/getPointsFromOtrArray";
 import deleteDublicatePoints from "./../scripts/deleteDublicatePoints";
 import distance from "./../scripts/distance";
 import equalPoints from "./../scripts/equalPoints";
+import getIntegerFromString from "./../scripts/getIntegerFromString";
+
+describe("Получение целого числа из строки", () => {
+    it("Корректный ввод", () => {
+        assert.deepStrictEqual(getIntegerFromString("35"), 35);
+        assert.deepStrictEqual(getIntegerFromString("-123"), -123);
+        assert.deepStrictEqual(getIntegerFromString("0"), 0);
+        assert.deepStrictEqual(getIntegerFromString("897"), 897);
+    });
+
+    it("Корректный ввод вещественных чисел", () => {
+        assert.deepStrictEqual(getIntegerFromString("12.7"), 12);
+        assert.deepStrictEqual(getIntegerFromString("34.2"), 34);
+        assert.deepStrictEqual(getIntegerFromString("-123.8"), -123);
+        assert.deepStrictEqual(getIntegerFromString("-50.2"), -50);
+        assert.deepStrictEqual(getIntegerFromString("0.1"), 0);
+        assert.deepStrictEqual(getIntegerFromString("-0.1"), 0);
+    });
+
+    it("Некорректный ввод", () => {
+        assert.deepStrictEqual(getIntegerFromString("abced"), 0);
+        assert.deepStrictEqual(getIntegerFromString("undefined"), 0);
+        assert.deepStrictEqual(getIntegerFromString("null"), 0);
+        assert.deepStrictEqual(getIntegerFromString("NaN"), 0);
+        assert.deepStrictEqual(getIntegerFromString(undefined), 0);
+        assert.deepStrictEqual(getIntegerFromString(null), 0);
+        assert.deepStrictEqual(getIntegerFromString(NaN), 0);
+    });
+});
 
 describe("Сравнение двух точек друг с другом", () => {
     it("Точки равны", () => {

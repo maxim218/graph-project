@@ -20,6 +20,11 @@ window.onload = function() {
         "getWaysBetweenVertexes",
         "stepFIRSTbox",
         "stepSECONDbox",
+        "Sx",
+        "Sy",
+        "Fx",
+        "Fy",
+        "setStartAndFinishBtn",
     ]);
 
     const canvasManager = new CanvasManager(dictionary["can"]);
