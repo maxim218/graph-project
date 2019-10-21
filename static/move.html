@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset = "UTF-8">
+    <title>Движение</title>
+    <style>
+        body {
+            font-family: Geneva, Arial, Helvetica, sans-serif;
+            font-size: 20px;
+            background: white;
+        }
+
+        #mainBox {
+            margin: 0 auto;
+            width: 800px;
+            height: 1000px;
+            padding: 40px;
+            border-radius: 5px;
+        }
+
+        button {
+            font-family: Geneva, Arial, Helvetica, sans-serif;
+            font-size: 25px;
+            padding: 10px;
+            background: #20B2AA;
+            border: 1px solid gray;
+            border-radius: 3px;
+            outline: none;
+            color: white;
+            width: 600px;
+        }
+
+        button:hover {
+            cursor: pointer;
+            background: #008080;
+        }
+
+        #can {
+            position: absolute;
+            margin-left: 0px;
+            margin-top: 0px;
+        }
+
+        #userMenuBox {
+            position: absolute;
+            margin-left: 0px;
+            margin-top: 610px;
+            background: white;
+            width: 800px;
+        }
+    </style>
+</head>
+<body>
+
+<div id = "mainBox">
+    <canvas width = "800px" height = "600px" id = "can"></canvas>
+    <div id = "userMenuBox" align = "center">
+       <h3>Движение</h3>
+    </div>
+</div>
+
+<script src = "moveAction.js"></script>
+    
+</body>
+</html>
