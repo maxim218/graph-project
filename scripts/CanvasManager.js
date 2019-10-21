@@ -11,6 +11,11 @@ export default class CanvasManager {
         this.drawBackground();
     }
 
+    setLineWidth(value) {
+        const holst = this.holst;
+        holst.lineWidth = parseInt(value);
+    }
+
     drawBackground() {
         const holst = this.holst;
         holst.clearRect(0, 0, 800, 600);

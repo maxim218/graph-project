@@ -26,7 +26,9 @@ export default function getWayQuery(wwwObject, dictionary, canvasManager, otrArr
             if(i + 1 < arr.length) {
                 const A = arr[i];
                 const B = arr[i + 1];
+                canvasManager.setLineWidth(4);
                 canvasManager.drawLine(A.Px, A.Py, B.Px, B.Py, "#FF0000");
+                canvasManager.setLineWidth(2);
             }
         }
     }
